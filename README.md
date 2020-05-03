@@ -11,7 +11,7 @@ A small collection of useful array functions.
 import * as arrayUtil from '@tsdotnet/array-utility'
 ```
 
-## Functions
+## Exported
 
 ### indexOf
 
