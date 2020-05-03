@@ -1,7 +1,7 @@
 {
   "name": "@tsdotnet/array-utility",
   "version": "1.0.1",
-  "description": "",
+  "description": "A small collection of useful array functions.",
   "author": "electricessence",
   "license": "MIT",
   "types": "dist/index.d.ts",
