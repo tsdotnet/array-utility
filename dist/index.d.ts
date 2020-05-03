@@ -13,9 +13,9 @@ declare type PredicateWithIndex<T> = SelectorWithIndex<T, boolean>;
 
 interface ArrayLikeWritable<T>
 {
-	length: number;
+    length: number;
 
-	[n: number]: T;
+    [n: number]: T;
 }
 
 /**
@@ -27,9 +27,9 @@ interface ArrayLikeWritable<T>
  * @returns {number}
  */
 export declare function indexOf<T> (
-	array: ArrayLike<T>,
-	item: T,
-	equalityComparer?: EqualityComparison<T>): number;
+    array: ArrayLike<T>,
+    item: T,
+    equalityComparer?: EqualityComparison<T>): number;
 
 /**
  * Checks to see if the provided array contains an item.
@@ -40,9 +40,9 @@ export declare function indexOf<T> (
  * @returns {boolean}
  */
 export declare function contains<T> (
-	array: ArrayLike<T>,
-	item: T,
-	equalityComparer?: EqualityComparison<T>): boolean;
+    array: ArrayLike<T>,
+    item: T,
+    equalityComparer?: EqualityComparison<T>): boolean;
 
 /**
  * Finds and replaces a value from an array.  Will replaces all instances unless a maximum is specified.
@@ -53,10 +53,10 @@ export declare function contains<T> (
  * @returns {number}
  */
 export declare function replace<T> (
-	array: ArrayLikeWritable<T>,
-	old: T,
-	newValue: T,
-	max?: number): number;
+    array: ArrayLikeWritable<T>,
+    old: T,
+    newValue: T,
+    max?: number): number;
 
 /**
  * Replaces values of an array across a range of indexes.
@@ -66,10 +66,10 @@ export declare function replace<T> (
  * @param stop
  */
 export declare function updateRange<T> (
-	array: ArrayLike<T>,
-	value: T,
-	start?: number,
-	stop?: number): void;
+    array: ArrayLike<T>,
+    value: T,
+    start?: number,
+    stop?: number): void;
 
 /**
  * Clears (sets to null) values of an array across a range of indexes.
@@ -78,9 +78,9 @@ export declare function updateRange<T> (
  * @param stop
  */
 export declare function clearEach (
-	array: ArrayLikeWritable<any>,
-	start?: number,
-	stop?: number): void;
+    array: ArrayLikeWritable<any>,
+    start?: number,
+    stop?: number): void;
 
 /**
  * Ensures a value exists within an array.  If not found, adds to the end.
@@ -90,9 +90,9 @@ export declare function clearEach (
  * @returns {boolean}
  */
 export declare function register<T> (
-	array: ArrayLikeWritable<T>,
-	item: T,
-	equalityComparer?: EqualityComparison<T>): boolean;
+    array: ArrayLikeWritable<T>,
+    item: T,
+    equalityComparer?: EqualityComparison<T>): boolean;
 
 /**
  * Returns the first index of which the provided predicate returns true.
@@ -102,8 +102,8 @@ export declare function register<T> (
  * @returns {number}
  */
 export declare function findIndex<T> (
-	array: ArrayLike<T>,
-	predicate: PredicateWithIndex<T>): number;
+    array: ArrayLike<T>,
+    predicate: PredicateWithIndex<T>): number;
 
 /**
  * Allows for using "false" to cause forEach to break.
@@ -112,8 +112,8 @@ export declare function findIndex<T> (
  * @param action
  */
 export declare function forEach<T> (
-	source: ArrayLike<T>,
-	action: ActionWithIndex<T> | PredicateWithIndex<T>): void;
+    source: ArrayLike<T>,
+    action: ActionWithIndex<T> | PredicateWithIndex<T>): void;
 
 /**
  * Is similar to Array.map() but instead of returning a new array, it updates the existing indexes.
@@ -122,8 +122,8 @@ export declare function forEach<T> (
  * @param fn
  */
 export declare function applyTo<T> (
-	target: ArrayLikeWritable<T>,
-	fn: SelectorWithIndex<T, T>): void;
+    target: ArrayLikeWritable<T>,
+    fn: SelectorWithIndex<T, T>): void;
 
 /**
  * Removes an entry at a specified index.
@@ -142,10 +142,10 @@ export declare function removeIndex<T> (array: T[], index: number): boolean;
  * @returns {number} The number of times the value was found and removed.
  */
 export declare function remove<T> (
-	array: T[],
-	value: T,
-	max?: number,
-	equalityComparer?: EqualityComparison<T>): number;
+    array: T[],
+    value: T,
+    max?: number,
+    equalityComparer?: EqualityComparison<T>): number;
 
 /**
  * Simply repeats a value the number of times specified.
