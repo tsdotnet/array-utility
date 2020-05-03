@@ -3,18 +3,15 @@
  * Licensing: MIT
  */
 import type from '@tsdotnet/compare/dist/type';
-import {areEqual} from '@tsdotnet/compare/dist/compare';
+import { areEqual } from '@tsdotnet/compare/dist/compare';
 import ArgumentOutOfRangeException from '@tsdotnet/exceptions/dist/ArgumentOutOfRangeException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import ArgumentException from '@tsdotnet/exceptions/dist/ArgumentException';
 import init from '@tsdotnet/array-init';
-import copy, {arrayCopyTo as copyTo} from '@tsdotnet/array-copy';
+import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
 import integer from '@tsdotnet/integer';
-
-export {init, copy, copyTo};
-const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less than zero.',
-      VFN = 'Must be a valid finite number';
-
+export { init, copy, copyTo };
+const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less than zero.', VFN = 'Must be a valid finite number';
 /**
  * Checks to see where the provided array contains an item/value.
  * If the array value is null, then -1 is returned.
@@ -25,13 +22,13 @@ const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less t
  */
 export function indexOf(array, item, equalityComparer = areEqual) {
     const len = array && array.length;
-    if(len) {
+    if (len) {
         // NaN NEVER evaluates its equality so be careful.
-        if(equalityComparer === areEqual && array instanceof Array && !type.isTrueNaN(item))
+        if (equalityComparer === areEqual && array instanceof Array && !type.isTrueNaN(item))
             return array.indexOf(item);
-        for(let i = 0; i<len; i++) {
+        for (let i = 0; i < len; i++) {
             // 'areEqual' includes NaN==NaN evaluation.
-            if(equalityComparer(array[i], item))
+            if (equalityComparer(array[i], item))
                 return i;
         }
     }
@@ -57,18 +54,18 @@ export function contains(array, item, equalityComparer = areEqual) {
  * @returns {number}
  */
 export function replace(array, old, newValue, max = Infinity) {
-    if(!array || !array.length || max === 0)
+    if (!array || !array.length || max === 0)
         return 0;
-    if(max<0)
+    if (max < 0)
         throw new ArgumentOutOfRangeException('max', max, CBL0);
-    if(!max)
+    if (!max)
         max = Infinity; // just in case.
     let count = 0;
-    for(let i = 0, len = array.length; i<len; i++) {
-        if(array[i] === old) {
+    for (let i = 0, len = array.length; i < len; i++) {
+        if (array[i] === old) {
             array[i] = newValue;
             ++count;
-            if(count === max)
+            if (count === max)
                 break;
         }
     }
@@ -82,15 +79,15 @@ export function replace(array, old, newValue, max = Infinity) {
  * @param stop
  */
 export function updateRange(array, value, start = 0, stop) {
-    if(!array)
+    if (!array)
         return;
     integer.assertZeroOrGreater(start, 'start');
-    if(!stop && stop !== 0)
+    if (!stop && stop !== 0)
         stop = array.length;
     integer.assert(stop, 'stop');
-    if(stop<start)
+    if (stop < start)
         throw new ArgumentOutOfRangeException('stop', stop, 'is less than start');
-    for(let i = start; i<stop; i++) {
+    for (let i = start; i < stop; i++) {
         array[i] = value;
     }
 }
@@ -111,11 +108,11 @@ export function clearEach(array, start = 0, stop) {
  * @returns {boolean}
  */
 export function register(array, item, equalityComparer = areEqual) {
-    if(!array)
+    if (!array)
         throw new ArgumentNullException('array', CBN);
     const len = array.length; // avoid querying .length more than once. *
     const ok = !len || !contains(array, item, equalityComparer);
-    if(ok)
+    if (ok)
         array[len] = item; // * push would query length again.
     return ok;
 }
@@ -127,22 +124,22 @@ export function register(array, item, equalityComparer = areEqual) {
  * @returns {number}
  */
 export function findIndex(array, predicate) {
-    if(!array)
+    if (!array)
         throw new ArgumentNullException('array', CBN);
-    if(!type.isFunction(predicate))
+    if (!type.isFunction(predicate))
         throw new ArgumentException('predicate', 'Must be a function.');
     const len = array.length;
-    if(!type.isNumber(len, true) || len<0)
+    if (!type.isNumber(len, true) || len < 0)
         throw new ArgumentException('array', 'Does not have a valid length.');
-    if(array instanceof Array) {
-        for(let i = 0; i<len; i++) {
-            if(predicate(array[i], i))
+    if (array instanceof Array) {
+        for (let i = 0; i < len; i++) {
+            if (predicate(array[i], i))
                 return i;
         }
     }
     else {
-        for(let i = 0; i<len; i++) {
-            if(i in array && predicate(array[i], i))
+        for (let i = 0; i < len; i++) {
+            if (i in array && predicate(array[i], i))
                 return i;
         }
     }
@@ -155,11 +152,11 @@ export function findIndex(array, predicate) {
  * @param action
  */
 export function forEach(source, action) {
-    if(source && action) {
+    if (source && action) {
         // Don't cache the length since it is possible that the underlying array changed.
-        for(let i = 0; i<source.length; i++) {
+        for (let i = 0; i < source.length; i++) {
             // noinspection PointlessBooleanExpressionJS
-            if(action(source[i], i) === false)
+            if (action(source[i], i) === false)
                 break;
         }
     }
@@ -171,8 +168,8 @@ export function forEach(source, action) {
  * @param fn
  */
 export function applyTo(target, fn) {
-    if(target && fn) {
-        for(let i = 0; i<target.length; i++) {
+    if (target && fn) {
+        for (let i = 0; i < target.length; i++) {
             target[i] = fn(target[i], i);
         }
     }
@@ -184,13 +181,13 @@ export function applyTo(target, fn) {
  * @returns {boolean} True if the value was able to be removed.
  */
 export function removeIndex(array, index) {
-    if(!array)
+    if (!array)
         throw new ArgumentNullException('array', CBN);
     integer.assert(index, 'index');
-    if(index<0)
+    if (index < 0)
         throw new ArgumentOutOfRangeException('index', index, CBL0);
-    const exists = index<array.length;
-    if(exists)
+    const exists = index < array.length;
+    if (exists)
         array.splice(index, 1);
     return exists;
 }
@@ -203,15 +200,15 @@ export function removeIndex(array, index) {
  * @returns {number} The number of times the value was found and removed.
  */
 export function remove(array, value, max = Infinity, equalityComparer = areEqual) {
-    if(!array || !array.length || max === 0)
+    if (!array || !array.length || max === 0)
         return 0;
-    if(max<0)
+    if (max < 0)
         throw new ArgumentOutOfRangeException('max', max, CBL0);
     let count = 0;
-    if(!max || !isFinite(max)) {
+    if (!max || !isFinite(max)) {
         // Don't track the indexes and remove in reverse.
-        for(let i = array.length - 1; i>=0; i--) {
-            if(equalityComparer(array[i], value)) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            if (equalityComparer(array[i], value)) {
                 array.splice(i, 1);
                 ++count;
             }
@@ -220,21 +217,20 @@ export function remove(array, value, max = Infinity, equalityComparer = areEqual
     else {
         // Since the user will expect it to happen in forward order...
         const found = []; // indexes;
-        for(let i = 0, len = array.length; i<len; i++) {
-            if(equalityComparer(array[i], value)) {
+        for (let i = 0, len = array.length; i < len; i++) {
+            if (equalityComparer(array[i], value)) {
                 found.push(i);
                 ++count;
-                if(count === max)
+                if (count === max)
                     break;
             }
         }
-        for(let i = found.length - 1; i>=0; i--) {
+        for (let i = found.length - 1; i >= 0; i--) {
             array.splice(found[i], 1);
         }
     }
     return count;
 }
-
 /**
  * Simply repeats a value the number of times specified.
  * @param element
@@ -243,10 +239,10 @@ export function remove(array, value, max = Infinity, equalityComparer = areEqual
  */
 export function repeat(element, count) {
     integer.assert(count, 'count');
-    if(count<0)
+    if (count < 0)
         throw new ArgumentOutOfRangeException('count', count, CBL0);
     const result = init(count);
-    for(let i = 0; i<count; i++) {
+    for (let i = 0; i < count; i++) {
         result[i] = element;
     }
     return result;
@@ -259,14 +255,14 @@ export function repeat(element, count) {
  * @returns {number[]}
  */
 export function range(first, count, step = 1) {
-    if(isNaN(first) || !isFinite(first))
+    if (isNaN(first) || !isFinite(first))
         throw new ArgumentOutOfRangeException('first', first, VFN);
-    if(isNaN(count) || !isFinite(count))
+    if (isNaN(count) || !isFinite(count))
         throw new ArgumentOutOfRangeException('count', count, VFN);
-    if(count<0)
+    if (count < 0)
         throw new ArgumentOutOfRangeException('count', count, CBL0);
     const result = init(count);
-    for(let i = 0; i<count; i++) {
+    for (let i = 0; i < count; i++) {
         result[i] = first;
         first += step;
     }
@@ -280,12 +276,12 @@ export function range(first, count, step = 1) {
  * @returns {number[]}
  */
 export function rangeUntil(first, until, step = 1) {
-    if(step === 0)
+    if (step === 0)
         throw new ArgumentOutOfRangeException('step', step, CB0);
-    return range(first, (until - first)/step, step);
+    return range(first, (until - first) / step, step);
 }
 export function distinct(source) {
-    if(!source)
+    if (!source)
         return []; // Allowing for null facilitates regex filtering.
     const seen = {};
     return source.filter((e) => !(e in seen) && (seen[e] = true));
@@ -299,18 +295,16 @@ export function distinct(source) {
  */
 export function flatten(a, recurseDepth = 0) {
     const result = [];
-    for(let x of a) {
-        if(x instanceof Array) {
-            if(recurseDepth>0)
+    for (let x of a) {
+        if (x instanceof Array) {
+            if (recurseDepth > 0)
                 x = flatten(x, recurseDepth - 1);
-            for(const e of x) {
+            for (const e of x)
                 result.push(e);
-            }
         }
         else
             result.push(x);
     }
     return result;
 }
-
 //# sourceMappingURL=index.js.map
