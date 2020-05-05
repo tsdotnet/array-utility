@@ -8,7 +8,7 @@ A small collection of useful array functions.
 
 ## Docs
 
-[tsdotnet.github.io/[package-name]](https://tsdotnet.github.io/[package-name]/)
+[tsdotnet.github.io/array-utility](https://tsdotnet.github.io/array-utility/)
 
 ## Usage
 ```typescript
