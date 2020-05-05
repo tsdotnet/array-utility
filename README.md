@@ -1,10 +1,14 @@
-# ![alt text](https://avatars1.githubusercontent.com/u/64487547?s=30&amp;v=4 "tsdotnet") tsdotnet / array-utility
+# ![alt text](https://avatars1.githubusercontent.com/u/64487547?s=30&amp;v=5 "tsdotnet") tsdotnet / array-utility
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/array-utility/blob/master/LICENSE)
 ![npm-publish](https://github.com/tsdotnet/array-utility/workflows/npm-publish/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/array-utility.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/array-utility)
 
 A small collection of useful array functions.
+
+## Docs
+
+[tsdotnet.github.io/[package-name]](https://tsdotnet.github.io/[package-name]/)
 
 ## Usage
 ```typescript
