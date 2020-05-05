@@ -69,10 +69,10 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@tsdotnet/array-copy": "^1.0.4",
-    "@tsdotnet/array-init": "^1.0.4",
-    "@tsdotnet/compare": "^1.0.7",
-    "@tsdotnet/exceptions": "^1.0.6",
-    "@tsdotnet/integer": "^1.0.2"
+    "@tsdotnet/array-copy": "^1.0.7",
+    "@tsdotnet/array-init": "^1.0.7",
+    "@tsdotnet/compare": "^1.0.12",
+    "@tsdotnet/exceptions": "^1.0.12",
+    "@tsdotnet/integer": "^1.0.6"
   }
 }
