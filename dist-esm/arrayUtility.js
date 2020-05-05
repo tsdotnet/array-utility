@@ -307,4 +307,4 @@ export function flatten(a, recurseDepth = 0) {
     }
     return result;
 }
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=arrayUtility.js.map
