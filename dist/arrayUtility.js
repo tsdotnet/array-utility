@@ -6,7 +6,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const type_1 = tslib_1.__importDefault(require("@tsdotnet/compare/dist/type"));
-const compare_1 = require("@tsdotnet/compare/dist/compare");
 const ArgumentOutOfRangeException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentOutOfRangeException"));
 const ArgumentNullException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
 const ArgumentException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentException"));
@@ -16,6 +15,7 @@ const array_copy_1 = tslib_1.__importStar(require("@tsdotnet/array-copy"));
 exports.copy = array_copy_1.default;
 exports.copyTo = array_copy_1.arrayCopyTo;
 const integer_1 = tslib_1.__importDefault(require("@tsdotnet/integer"));
+const areEqual_1 = tslib_1.__importDefault(require("@tsdotnet/compare/dist/areEqual"));
 const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less than zero.', VFN = 'Must be a valid finite number';
 /**
  * Checks to see where the provided array contains an item/value.
@@ -25,11 +25,11 @@ const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less t
  * @param {function?} equalityComparer
  * @returns {number}
  */
-function indexOf(array, item, equalityComparer = compare_1.areEqual) {
+function indexOf(array, item, equalityComparer = areEqual_1.default) {
     const len = array && array.length;
     if (len) {
         // NaN NEVER evaluates its equality so be careful.
-        if (equalityComparer === compare_1.areEqual && array instanceof Array && !type_1.default.isTrueNaN(item))
+        if (equalityComparer === areEqual_1.default && array instanceof Array && !type_1.default.isTrueNaN(item))
             return array.indexOf(item);
         for (let i = 0; i < len; i++) {
             // 'areEqual' includes NaN==NaN evaluation.
@@ -48,7 +48,7 @@ exports.indexOf = indexOf;
  * @param {function?} equalityComparer
  * @returns {boolean}
  */
-function contains(array, item, equalityComparer = compare_1.areEqual) {
+function contains(array, item, equalityComparer = areEqual_1.default) {
     return indexOf(array, item, equalityComparer) !== -1;
 }
 exports.contains = contains;
@@ -117,7 +117,7 @@ exports.clearEach = clearEach;
  * @param {function?} equalityComparer
  * @returns {boolean}
  */
-function register(array, item, equalityComparer = compare_1.areEqual) {
+function register(array, item, equalityComparer = areEqual_1.default) {
     if (!array)
         throw new ArgumentNullException_1.default('array', CBN);
     const len = array.length; // avoid querying .length more than once. *
@@ -214,7 +214,7 @@ exports.removeIndex = removeIndex;
  * @param {function?} equalityComparer
  * @returns {number} The number of times the value was found and removed.
  */
-function remove(array, value, max = Infinity, equalityComparer = compare_1.areEqual) {
+function remove(array, value, max = Infinity, equalityComparer = areEqual_1.default) {
     if (!array || !array.length || max === 0)
         return 0;
     if (max < 0)

@@ -2,9 +2,9 @@
  * @author electricessence / https://github.com/electricessence/
  * Licensing: MIT
  */
-import { EqualityComparison } from '@tsdotnet/compare/dist/Comparison';
 import init from '@tsdotnet/array-init';
 import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
+import { EqualityComparison } from '@tsdotnet/compare';
 export { init, copy, copyTo };
 declare type SelectorWithIndex<TSource, TResult> = (source: TSource, index: number) => TResult;
 declare type ActionWithIndex<T> = SelectorWithIndex<T, void>;

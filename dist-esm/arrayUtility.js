@@ -3,13 +3,13 @@
  * Licensing: MIT
  */
 import type from '@tsdotnet/compare/dist/type';
-import { areEqual } from '@tsdotnet/compare/dist/compare';
 import ArgumentOutOfRangeException from '@tsdotnet/exceptions/dist/ArgumentOutOfRangeException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import ArgumentException from '@tsdotnet/exceptions/dist/ArgumentException';
 import init from '@tsdotnet/array-init';
 import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
 import integer from '@tsdotnet/integer';
+import areEqual from '@tsdotnet/compare/dist/areEqual';
 export { init, copy, copyTo };
 const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less than zero.', VFN = 'Must be a valid finite number';
 /**
