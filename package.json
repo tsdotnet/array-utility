@@ -53,10 +53,10 @@
   "homepage": "https://github.com/tsdotnet/array-utility#readme",
   "devDependencies": {
     "@types/jasmine": "^3.5.10",
-    "@typescript-eslint/eslint-plugin": "^2.31.0",
-    "@typescript-eslint/parser": "^2.31.0",
+    "@typescript-eslint/eslint-plugin": "2.31.0",
+    "@typescript-eslint/parser": "2.31.0",
     "copyfiles": "^2.2.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
@@ -71,7 +71,7 @@
   "dependencies": {
     "@tsdotnet/array-copy": "^1.0.7",
     "@tsdotnet/array-init": "^1.0.7",
-    "@tsdotnet/compare": "^1.0.12",
+    "@tsdotnet/compare": "^1.2.2",
     "@tsdotnet/exceptions": "^1.0.12",
     "@tsdotnet/integer": "^1.0.6"
   }
