@@ -1,12 +1,12 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
-import type from '@tsdotnet/compare/dist/type';
 import ArgumentOutOfRangeException from '@tsdotnet/exceptions/dist/ArgumentOutOfRangeException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import ArgumentException from '@tsdotnet/exceptions/dist/ArgumentException';
 import init from '@tsdotnet/array-init';
+import type from '@tsdotnet/type';
 import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
 import integer from '@tsdotnet/integer';
 import areEqual from '@tsdotnet/compare/dist/areEqual';

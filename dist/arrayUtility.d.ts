@@ -1,6 +1,6 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 import init from '@tsdotnet/array-init';
 import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
