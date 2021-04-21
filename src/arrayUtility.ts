@@ -222,7 +222,7 @@ export function forEach<T> (
 	action: ActionWithIndex<T> | PredicateWithIndex<T>
 ): void
 {
-	if(source && action)
+	if(source && action!=null)
 	{
 		// Don't cache the length since it is possible that the underlying array changed.
 		for(let i = 0; i<source.length; i++)
@@ -244,7 +244,7 @@ export function applyTo<T> (
 	fn: SelectorWithIndex<T, T>
 ): void
 {
-	if(target && fn)
+	if(target && fn!=null)
 	{
 		for(let i = 0; i<target.length; i++)
 		{

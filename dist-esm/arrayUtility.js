@@ -152,7 +152,7 @@ export function findIndex(array, predicate) {
  * @param action
  */
 export function forEach(source, action) {
-    if (source && action) {
+    if (source && action != null) {
         // Don't cache the length since it is possible that the underlying array changed.
         for (let i = 0; i < source.length; i++) {
             // noinspection PointlessBooleanExpressionJS
@@ -168,7 +168,7 @@ export function forEach(source, action) {
  * @param fn
  */
 export function applyTo(target, fn) {
-    if (target && fn) {
+    if (target && fn != null) {
         for (let i = 0; i < target.length; i++) {
             target[i] = fn(target[i], i);
         }
