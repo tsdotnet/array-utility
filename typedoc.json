@@ -1,9 +1,6 @@
 {
   "entryPoints": [
-    "./src"
-  ],
-  "exclude": [
-    "./src/index.ts"
+    "./src/arrayUtility.ts"
   ],
   "out": "docs",
   "includeVersion": true,
