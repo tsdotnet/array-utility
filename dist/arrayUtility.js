@@ -6,17 +6,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.flatten = exports.distinct = exports.rangeUntil = exports.range = exports.repeat = exports.remove = exports.removeIndex = exports.applyTo = exports.forEach = exports.findIndex = exports.register = exports.clearEach = exports.updateRange = exports.replace = exports.contains = exports.indexOf = exports.copyTo = exports.copy = exports.init = void 0;
 const tslib_1 = require("tslib");
-const ArgumentOutOfRangeException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentOutOfRangeException"));
-const ArgumentNullException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
-const ArgumentException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentException"));
-const array_init_1 = tslib_1.__importDefault(require("@tsdotnet/array-init"));
+const ArgumentOutOfRangeException_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/exceptions/dist/ArgumentOutOfRangeException"));
+const ArgumentNullException_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
+const ArgumentException_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/exceptions/dist/ArgumentException"));
+const array_init_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/array-init"));
 exports.init = array_init_1.default;
-const type_1 = tslib_1.__importDefault(require("@tsdotnet/type"));
-const array_copy_1 = tslib_1.__importStar(require("@tsdotnet/array-copy"));
+const type_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/type"));
+const array_copy_1 = (0, tslib_1.__importStar)(require("@tsdotnet/array-copy"));
 exports.copy = array_copy_1.default;
 Object.defineProperty(exports, "copyTo", { enumerable: true, get: function () { return array_copy_1.arrayCopyTo; } });
-const integer_1 = tslib_1.__importDefault(require("@tsdotnet/integer"));
-const areEqual_1 = tslib_1.__importDefault(require("@tsdotnet/compare/dist/areEqual"));
+const integer_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/integer"));
+const areEqual_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/compare/dist/areEqual"));
 const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less than zero.', VFN = 'Must be a valid finite number';
 /**
  * Checks to see where the provided array contains an item/value.
@@ -258,7 +258,7 @@ function repeat(element, count) {
     integer_1.default.assert(count, 'count');
     if (count < 0)
         throw new ArgumentOutOfRangeException_1.default('count', count, CBL0);
-    const result = array_init_1.default(count);
+    const result = (0, array_init_1.default)(count);
     for (let i = 0; i < count; i++) {
         result[i] = element;
     }
@@ -279,7 +279,7 @@ function range(first, count, step = 1) {
         throw new ArgumentOutOfRangeException_1.default('count', count, VFN);
     if (count < 0)
         throw new ArgumentOutOfRangeException_1.default('count', count, CBL0);
-    const result = array_init_1.default(count);
+    const result = (0, array_init_1.default)(count);
     for (let i = 0; i < count; i++) {
         result[i] = first;
         first += step;
