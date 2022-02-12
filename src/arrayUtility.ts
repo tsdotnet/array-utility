@@ -3,6 +3,7 @@
  * @license MIT
  */
 
+import {ActionWithIndex, PredicateWithIndex, SelectorWithIndex} from '@tsdotnet/common-interfaces';
 import ArgumentOutOfRangeException from '@tsdotnet/exceptions/dist/ArgumentOutOfRangeException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import ArgumentException from '@tsdotnet/exceptions/dist/ArgumentException';
@@ -15,11 +16,7 @@ import areEqual from '@tsdotnet/compare/dist/areEqual';
 
 export {init, copy, copyTo};
 
-type SelectorWithIndex<TSource, TResult> = (source: TSource, index: number) => TResult;
-type ActionWithIndex<T> = SelectorWithIndex<T, void>;
-type PredicateWithIndex<T> = SelectorWithIndex<T, boolean>;
-
-interface ArrayLikeWritable<T>
+export interface ArrayLikeWritable<T>
 {
 	length: number;
 

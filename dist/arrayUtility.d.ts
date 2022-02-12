@@ -2,14 +2,12 @@
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  */
+import { ActionWithIndex, PredicateWithIndex, SelectorWithIndex } from '@tsdotnet/common-interfaces';
 import init from '@tsdotnet/array-init';
 import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
 import { EqualityComparison } from '@tsdotnet/compare';
 export { init, copy, copyTo };
-declare type SelectorWithIndex<TSource, TResult> = (source: TSource, index: number) => TResult;
-declare type ActionWithIndex<T> = SelectorWithIndex<T, void>;
-declare type PredicateWithIndex<T> = SelectorWithIndex<T, boolean>;
-interface ArrayLikeWritable<T> {
+export interface ArrayLikeWritable<T> {
     length: number;
     [n: number]: T;
 }

@@ -52,6 +52,7 @@
   },
   "homepage": "https://github.com/tsdotnet/array-utility#readme",
   "devDependencies": {
+    "@tsdotnet/common-interfaces": "^1.0.4",
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.17",
