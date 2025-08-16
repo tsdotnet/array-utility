@@ -1,16 +1,36 @@
+"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  */
-import ArgumentOutOfRangeException from '@tsdotnet/exceptions/dist/ArgumentOutOfRangeException';
-import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
-import ArgumentException from '@tsdotnet/exceptions/dist/ArgumentException';
-import init from '@tsdotnet/array-init';
-import type from '@tsdotnet/type';
-import copy, { arrayCopyTo as copyTo } from '@tsdotnet/array-copy';
-import integer from '@tsdotnet/integer';
-import areEqual from '@tsdotnet/compare/dist/areEqual';
-export { init, copy, copyTo };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.copyTo = exports.copy = exports.init = void 0;
+exports.indexOf = indexOf;
+exports.contains = contains;
+exports.replace = replace;
+exports.updateRange = updateRange;
+exports.clearEach = clearEach;
+exports.register = register;
+exports.findIndex = findIndex;
+exports.forEach = forEach;
+exports.applyTo = applyTo;
+exports.removeIndex = removeIndex;
+exports.remove = remove;
+exports.repeat = repeat;
+exports.range = range;
+exports.rangeUntil = rangeUntil;
+exports.distinct = distinct;
+exports.flatten = flatten;
+const tslib_1 = require("tslib");
+const exceptions_1 = require("@tsdotnet/exceptions");
+const array_init_1 = tslib_1.__importDefault(require("@tsdotnet/array-init"));
+exports.init = array_init_1.default;
+const type_1 = tslib_1.__importDefault(require("@tsdotnet/type"));
+const array_copy_1 = tslib_1.__importStar(require("@tsdotnet/array-copy"));
+exports.copy = array_copy_1.default;
+Object.defineProperty(exports, "copyTo", { enumerable: true, get: function () { return array_copy_1.arrayCopyTo; } });
+const integer_1 = tslib_1.__importDefault(require("@tsdotnet/integer"));
+const compare_1 = require("@tsdotnet/compare");
 const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less than zero.', VFN = 'Must be a valid finite number';
 /**
  * Checks to see where the provided array contains an item/value.
@@ -20,11 +40,11 @@ const CBN = 'Cannot be null.', CB0 = 'Cannot be zero.', CBL0 = 'Cannot be less t
  * @param {function?} equalityComparer
  * @returns {number}
  */
-export function indexOf(array, item, equalityComparer = areEqual) {
+function indexOf(array, item, equalityComparer = compare_1.areEqual) {
     const len = array && array.length;
     if (len) {
         // NaN NEVER evaluates its equality so be careful.
-        if (equalityComparer === areEqual && array instanceof Array && !type.isTrueNaN(item))
+        if (equalityComparer === compare_1.areEqual && array instanceof Array && !type_1.default.isTrueNaN(item))
             return array.indexOf(item);
         for (let i = 0; i < len; i++) {
             // 'areEqual' includes NaN==NaN evaluation.
@@ -42,7 +62,7 @@ export function indexOf(array, item, equalityComparer = areEqual) {
  * @param {function?} equalityComparer
  * @returns {boolean}
  */
-export function contains(array, item, equalityComparer = areEqual) {
+function contains(array, item, equalityComparer = compare_1.areEqual) {
     return indexOf(array, item, equalityComparer) !== -1;
 }
 /**
@@ -53,11 +73,11 @@ export function contains(array, item, equalityComparer = areEqual) {
  * @param max
  * @returns {number}
  */
-export function replace(array, old, newValue, max = Infinity) {
+function replace(array, old, newValue, max = Infinity) {
     if (!array || !array.length || max === 0)
         return 0;
     if (max < 0)
-        throw new ArgumentOutOfRangeException('max', max, CBL0);
+        throw new exceptions_1.ArgumentOutOfRangeException('max', max, CBL0);
     if (!max)
         max = Infinity; // just in case.
     let count = 0;
@@ -78,15 +98,15 @@ export function replace(array, old, newValue, max = Infinity) {
  * @param start
  * @param stop
  */
-export function updateRange(array, value, start = 0, stop) {
+function updateRange(array, value, start = 0, stop) {
     if (!array)
         return;
-    integer.assertZeroOrGreater(start, 'start');
+    integer_1.default.assertZeroOrGreater(start, 'start');
     if (!stop && stop !== 0)
         stop = array.length;
-    integer.assert(stop, 'stop');
+    integer_1.default.assert(stop, 'stop');
     if (stop < start)
-        throw new ArgumentOutOfRangeException('stop', stop, 'is less than start');
+        throw new exceptions_1.ArgumentOutOfRangeException('stop', stop, 'is less than start');
     for (let i = start; i < stop; i++) {
         array[i] = value;
     }
@@ -97,7 +117,7 @@ export function updateRange(array, value, start = 0, stop) {
  * @param start
  * @param stop
  */
-export function clearEach(array, start = 0, stop) {
+function clearEach(array, start = 0, stop) {
     updateRange(array, null, start, stop);
 }
 /**
@@ -107,9 +127,9 @@ export function clearEach(array, start = 0, stop) {
  * @param {function?} equalityComparer
  * @returns {boolean}
  */
-export function register(array, item, equalityComparer = areEqual) {
+function register(array, item, equalityComparer = compare_1.areEqual) {
     if (!array)
-        throw new ArgumentNullException('array', CBN);
+        throw new exceptions_1.ArgumentNullException('array', CBN);
     const len = array.length; // avoid querying .length more than once. *
     const ok = !len || !contains(array, item, equalityComparer);
     if (ok)
@@ -123,14 +143,14 @@ export function register(array, item, equalityComparer = areEqual) {
  * @param predicate
  * @returns {number}
  */
-export function findIndex(array, predicate) {
+function findIndex(array, predicate) {
     if (!array)
-        throw new ArgumentNullException('array', CBN);
-    if (!type.isFunction(predicate))
-        throw new ArgumentException('predicate', 'Must be a function.');
+        throw new exceptions_1.ArgumentNullException('array', CBN);
+    if (!type_1.default.isFunction(predicate))
+        throw new exceptions_1.ArgumentException('predicate', 'Must be a function.');
     const len = array.length;
-    if (!type.isNumber(len, true) || len < 0)
-        throw new ArgumentException('array', 'Does not have a valid length.');
+    if (!type_1.default.isNumber(len, true) || len < 0)
+        throw new exceptions_1.ArgumentException('array', 'Does not have a valid length.');
     if (array instanceof Array) {
         for (let i = 0; i < len; i++) {
             if (predicate(array[i], i))
@@ -151,7 +171,7 @@ export function findIndex(array, predicate) {
  * @param source
  * @param action
  */
-export function forEach(source, action) {
+function forEach(source, action) {
     if (source && action != null) {
         // Don't cache the length since it is possible that the underlying array changed.
         for (let i = 0; i < source.length; i++) {
@@ -167,7 +187,7 @@ export function forEach(source, action) {
  * @param target
  * @param fn
  */
-export function applyTo(target, fn) {
+function applyTo(target, fn) {
     if (target && fn != null) {
         for (let i = 0; i < target.length; i++) {
             target[i] = fn(target[i], i);
@@ -180,12 +200,12 @@ export function applyTo(target, fn) {
  * @param index
  * @returns {boolean} True if the value was able to be removed.
  */
-export function removeIndex(array, index) {
+function removeIndex(array, index) {
     if (!array)
-        throw new ArgumentNullException('array', CBN);
-    integer.assert(index, 'index');
+        throw new exceptions_1.ArgumentNullException('array', CBN);
+    integer_1.default.assert(index, 'index');
     if (index < 0)
-        throw new ArgumentOutOfRangeException('index', index, CBL0);
+        throw new exceptions_1.ArgumentOutOfRangeException('index', index, CBL0);
     const exists = index < array.length;
     if (exists)
         array.splice(index, 1);
@@ -199,11 +219,11 @@ export function removeIndex(array, index) {
  * @param {function?} equalityComparer
  * @returns {number} The number of times the value was found and removed.
  */
-export function remove(array, value, max = Infinity, equalityComparer = areEqual) {
+function remove(array, value, max = Infinity, equalityComparer = compare_1.areEqual) {
     if (!array || !array.length || max === 0)
         return 0;
     if (max < 0)
-        throw new ArgumentOutOfRangeException('max', max, CBL0);
+        throw new exceptions_1.ArgumentOutOfRangeException('max', max, CBL0);
     let count = 0;
     if (!max || !isFinite(max)) {
         // Don't track the indexes and remove in reverse.
@@ -237,11 +257,11 @@ export function remove(array, value, max = Infinity, equalityComparer = areEqual
  * @param count
  * @returns {T[]}
  */
-export function repeat(element, count) {
-    integer.assert(count, 'count');
+function repeat(element, count) {
+    integer_1.default.assert(count, 'count');
     if (count < 0)
-        throw new ArgumentOutOfRangeException('count', count, CBL0);
-    const result = init(count);
+        throw new exceptions_1.ArgumentOutOfRangeException('count', count, CBL0);
+    const result = (0, array_init_1.default)(count);
     for (let i = 0; i < count; i++) {
         result[i] = element;
     }
@@ -254,14 +274,14 @@ export function repeat(element, count) {
  * @param step
  * @returns {number[]}
  */
-export function range(first, count, step = 1) {
+function range(first, count, step = 1) {
     if (isNaN(first) || !isFinite(first))
-        throw new ArgumentOutOfRangeException('first', first, VFN);
+        throw new exceptions_1.ArgumentOutOfRangeException('first', first, VFN);
     if (isNaN(count) || !isFinite(count))
-        throw new ArgumentOutOfRangeException('count', count, VFN);
+        throw new exceptions_1.ArgumentOutOfRangeException('count', count, VFN);
     if (count < 0)
-        throw new ArgumentOutOfRangeException('count', count, CBL0);
-    const result = init(count);
+        throw new exceptions_1.ArgumentOutOfRangeException('count', count, CBL0);
+    const result = (0, array_init_1.default)(count);
     for (let i = 0; i < count; i++) {
         result[i] = first;
         first += step;
@@ -275,12 +295,12 @@ export function range(first, count, step = 1) {
  * @param step
  * @returns {number[]}
  */
-export function rangeUntil(first, until, step = 1) {
+function rangeUntil(first, until, step = 1) {
     if (step === 0)
-        throw new ArgumentOutOfRangeException('step', step, CB0);
+        throw new exceptions_1.ArgumentOutOfRangeException('step', step, CB0);
     return range(first, (until - first) / step, step);
 }
-export function distinct(source) {
+function distinct(source) {
     if (!source)
         return []; // Allowing for null facilitates regex filtering.
     const seen = {};
@@ -293,7 +313,7 @@ export function distinct(source) {
  * @param recurseDepth
  * @returns {any[]}
  */
-export function flatten(a, recurseDepth = 0) {
+function flatten(a, recurseDepth = 0) {
     const result = [];
     for (let x of a) {
         if (x instanceof Array) {

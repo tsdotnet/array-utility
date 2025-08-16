@@ -4,15 +4,13 @@
  */
 
 import {ActionWithIndex, PredicateWithIndex, SelectorWithIndex} from '@tsdotnet/common-interfaces';
-import ArgumentOutOfRangeException from '@tsdotnet/exceptions/dist/ArgumentOutOfRangeException';
-import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
-import ArgumentException from '@tsdotnet/exceptions/dist/ArgumentException';
+import {ArgumentOutOfRangeException, ArgumentNullException, ArgumentException} from '@tsdotnet/exceptions';
 import init from '@tsdotnet/array-init';
 import type from '@tsdotnet/type';
 import copy, {arrayCopyTo as copyTo} from '@tsdotnet/array-copy';
 import integer from '@tsdotnet/integer';
 import {EqualityComparison} from '@tsdotnet/compare';
-import areEqual from '@tsdotnet/compare/dist/areEqual';
+import {areEqual} from '@tsdotnet/compare';
 
 export {init, copy, copyTo};
 
