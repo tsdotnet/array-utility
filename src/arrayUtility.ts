@@ -50,8 +50,9 @@ export function indexOf<T> (
 
 		for(let i = 0; i<len; i++)
 		{
+			const element = array[i];
 			// 'areEqual' includes NaN==NaN evaluation.
-			if(equalityComparer(array[i], item)) return i;
+			if(element !== undefined && equalityComparer(element, item)) return i;
 		}
 	}
 
@@ -199,7 +200,8 @@ export function findIndex<T> (
 	{
 		for(let i = 0; i<len; i++)
 		{
-			if(i in array && predicate(array[i], i)) return i;
+			const element = array[i];
+			if(i in array && element !== undefined && predicate(element, i)) return i;
 		}
 	}
 
@@ -222,8 +224,9 @@ export function forEach<T> (
 		// Don't cache the length since it is possible that the underlying array changed.
 		for(let i = 0; i<source.length; i++)
 		{
+			const element = source[i];
 			// noinspection PointlessBooleanExpressionJS
-			if(action(source[i], i)===false) break;
+			if(element !== undefined && action(element, i)===false) break;
 		}
 	}
 }
@@ -243,7 +246,8 @@ export function applyTo<T> (
 	{
 		for(let i = 0; i<target.length; i++)
 		{
-			(target as any)[i] = fn(target[i], i);
+			const element = target[i];
+			if(element !== undefined) (target as any)[i] = fn(element, i);
 		}
 	}
 }
@@ -293,7 +297,8 @@ export function remove<T> (
 		// Don't track the indexes and remove in reverse.
 		for(let i = array.length - 1; i>=0; i--)
 		{
-			if(equalityComparer(array[i], value))
+			const element = array[i];
+			if(element !== undefined && equalityComparer(element, value))
 			{
 				array.splice(i, 1);
 				++count;
@@ -306,7 +311,8 @@ export function remove<T> (
 		const found: number[] = []; // indexes;
 		for(let i = 0, len = array.length; i<len; i++)
 		{
-			if(equalityComparer(array[i], value))
+			const element = array[i];
+			if(element !== undefined && equalityComparer(element, value))
 			{
 				found.push(i);
 				++count;
@@ -316,7 +322,8 @@ export function remove<T> (
 
 		for(let i = found.length - 1; i>=0; i--)
 		{
-			array.splice(found[i], 1);
+			const index = found[i];
+			if(index !== undefined) array.splice(index, 1);
 		}
 	}
 
