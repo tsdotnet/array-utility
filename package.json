@@ -69,11 +69,11 @@
     "rollup": "^4.46.3",
     "typedoc": "^0.28.10",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.1",
+    "typescript-eslint": "^8.40.0",
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@tsdotnet/array-copy": "^1.2.1",
+    "@tsdotnet/array-copy": "^1.2.2",
     "@tsdotnet/array-init": "^1.2.2",
     "@tsdotnet/common-interfaces": "^1.0.5",
     "@tsdotnet/compare": "^1.5.4",
