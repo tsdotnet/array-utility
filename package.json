@@ -78,7 +78,7 @@
     "@tsdotnet/array-copy": "^1.2.2",
     "@tsdotnet/array-init": "^1.2.2",
     "@tsdotnet/common-interfaces": "^1.0.5",
-    "@tsdotnet/compare": "^1.7.0",
+    "@tsdotnet/compare": "^1.7.1",
     "@tsdotnet/exceptions": "^1.2.4",
     "@tsdotnet/integer": "^1.2.3",
     "@tsdotnet/type": "^1.2.5",
