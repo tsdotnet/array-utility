@@ -75,13 +75,13 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@tsdotnet/array-copy": "^1.2.3",
+    "@tsdotnet/array-copy": "^1.2.4",
     "@tsdotnet/array-init": "^1.2.3",
     "@tsdotnet/common-interfaces": "^1.0.6",
-    "@tsdotnet/compare": "^1.7.2",
+    "@tsdotnet/compare": "^1.7.3",
     "@tsdotnet/exceptions": "^1.2.5",
-    "@tsdotnet/integer": "^1.2.4",
-    "@tsdotnet/type": "^1.2.6",
+    "@tsdotnet/integer": "^1.2.5",
+    "@tsdotnet/type": "^1.2.7",
     "tslib": "^2.8.1"
   },
   "pnpm": {
