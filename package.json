@@ -75,13 +75,13 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@tsdotnet/array-copy": "^1.2.2",
-    "@tsdotnet/array-init": "^1.2.2",
-    "@tsdotnet/common-interfaces": "^1.0.5",
-    "@tsdotnet/compare": "^1.7.1",
-    "@tsdotnet/exceptions": "^1.2.4",
-    "@tsdotnet/integer": "^1.2.3",
-    "@tsdotnet/type": "^1.2.5",
+    "@tsdotnet/array-copy": "^1.2.3",
+    "@tsdotnet/array-init": "^1.2.3",
+    "@tsdotnet/common-interfaces": "^1.0.6",
+    "@tsdotnet/compare": "^1.7.2",
+    "@tsdotnet/exceptions": "^1.2.5",
+    "@tsdotnet/integer": "^1.2.4",
+    "@tsdotnet/type": "^1.2.6",
     "tslib": "^2.8.1"
   },
   "pnpm": {
