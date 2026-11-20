@@ -107,13 +107,13 @@
     "vitest": "^5.1.1"
   },
   "dependencies": {
-    "@tsdotnet/array-copy": "^1.3.0",
-    "@tsdotnet/array-init": "^1.3.0",
-    "@tsdotnet/common-interfaces": "^1.0.6",
-    "@tsdotnet/compare": "^1.8.0",
-    "@tsdotnet/exceptions": "^1.3.0",
-    "@tsdotnet/integer": "^1.3.0",
-    "@tsdotnet/type": "^1.3.0",
+    "@tsdotnet/array-copy": "^1.3.3",
+    "@tsdotnet/array-init": "^1.3.1",
+    "@tsdotnet/common-interfaces": "^1.0.7",
+    "@tsdotnet/compare": "^1.8.3",
+    "@tsdotnet/exceptions": "^1.3.1",
+    "@tsdotnet/integer": "^1.3.2",
+    "@tsdotnet/type": "^1.3.2",
     "tslib": "^2.9.1"
   },
   "pnpm": {
