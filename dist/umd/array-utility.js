@@ -4,6 +4,13 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.tsdotnet = global.tsdotnet || {}, global.tsdotnet.arrayUtility = global.tsdotnet.arrayUtility || {}), global.tsdotnet.exceptions, global.tsdotnet.arrayInit, global.tsdotnet.type, global.tsdotnet.arrayCopy, global.tsdotnet.integer, global.tsdotnet.compare));
 })(this, (function (exports, exceptions, init, type, arrayCopy, integer, compare) { 'use strict';
 
+    function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+    var init__default = /*#__PURE__*/_interopDefault(init);
+    var type__default = /*#__PURE__*/_interopDefault(type);
+    var arrayCopy__default = /*#__PURE__*/_interopDefault(arrayCopy);
+    var integer__default = /*#__PURE__*/_interopDefault(integer);
+
     /*!
      * @author electricessence / https://github.com/electricessence/
      * @license MIT
@@ -12,7 +19,7 @@
     function indexOf(array, item, equalityComparer = compare.areEqual) {
         const len = array && array.length;
         if (len) {
-            if (equalityComparer === compare.areEqual && array instanceof Array && !type.isTrueNaN(item))
+            if (equalityComparer === compare.areEqual && array instanceof Array && !type__default.default.isTrueNaN(item))
                 return array.indexOf(item);
             for (let i = 0; i < len; i++) {
                 const element = array[i];
@@ -46,10 +53,10 @@
     function updateRange(array, value, start = 0, stop) {
         if (!array)
             return;
-        integer.assertZeroOrGreater(start, 'start');
+        integer__default.default.assertZeroOrGreater(start, 'start');
         if (!stop && stop !== 0)
             stop = array.length;
-        integer.assert(stop, 'stop');
+        integer__default.default.assert(stop, 'stop');
         if (stop < start)
             throw new exceptions.ArgumentOutOfRangeException('stop', stop, 'is less than start');
         for (let i = start; i < stop; i++) {
@@ -71,10 +78,10 @@
     function findIndex(array, predicate) {
         if (!array)
             throw new exceptions.ArgumentNullException('array', CBN);
-        if (!type.isFunction(predicate))
+        if (!type__default.default.isFunction(predicate))
             throw new exceptions.ArgumentException('predicate', 'Must be a function.');
         const len = array.length;
-        if (!type.isNumber(len, true) || len < 0)
+        if (!type__default.default.isNumber(len, true) || len < 0)
             throw new exceptions.ArgumentException('array', 'Does not have a valid length.');
         if (array instanceof Array) {
             for (let i = 0; i < len; i++) {
@@ -112,7 +119,7 @@
     function removeIndex(array, index) {
         if (!array)
             throw new exceptions.ArgumentNullException('array', CBN);
-        integer.assert(index, 'index');
+        integer__default.default.assert(index, 'index');
         if (index < 0)
             throw new exceptions.ArgumentOutOfRangeException('index', index, CBL0);
         const exists = index < array.length;
@@ -155,10 +162,10 @@
         return count;
     }
     function repeat(element, count) {
-        integer.assert(count, 'count');
+        integer__default.default.assert(count, 'count');
         if (count < 0)
             throw new exceptions.ArgumentOutOfRangeException('count', count, CBL0);
-        const result = init(count);
+        const result = init__default.default(count);
         for (let i = 0; i < count; i++) {
             result[i] = element;
         }
@@ -171,7 +178,7 @@
             throw new exceptions.ArgumentOutOfRangeException('count', count, VFN);
         if (count < 0)
             throw new exceptions.ArgumentOutOfRangeException('count', count, CBL0);
-        const result = init(count);
+        const result = init__default.default(count);
         for (let i = 0; i < count; i++) {
             result[i] = first;
             first += step;
@@ -204,8 +211,14 @@
         return result;
     }
 
-    exports.init = init;
-    exports.copy = arrayCopy;
+    Object.defineProperty(exports, "init", {
+        enumerable: true,
+        get: function () { return init__default.default; }
+    });
+    Object.defineProperty(exports, "copy", {
+        enumerable: true,
+        get: function () { return arrayCopy__default.default; }
+    });
     Object.defineProperty(exports, "copyTo", {
         enumerable: true,
         get: function () { return arrayCopy.arrayCopyTo; }
